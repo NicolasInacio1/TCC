@@ -1,0 +1,14 @@
+
+MAS simulacaoCuidadorPervasivo {
+
+    environment: simulacao.Env("Cenário Quarto + Paciente")
+
+    agents: paciente;
+            cuidador;
+            sensorSom;
+            sensorMovimento;
+            atuadorIluminacao;
+            atuadorSmartTV;
+
+    aslSourcePath: "src/agt";
+}

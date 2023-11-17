@@ -1,0 +1,55 @@
+Ambiente de simulação
+    
+
+    A dinâmica representa uma situação real, em que usuários entram e saem de um ambiente. Claro
+    que o Sistema Pervasivo precisa trabalhar com um espaço de tempo em que se o mesmo usuário entrar ou
+    sair do ambiente, não haja alteração da configuração dos sistemas de climatização e de iluminação.
+    Nesse período (espaço de tempo ou intervalo sem alteração), o ambiente pode até perceber/sensorar as entradas e as saídas do usuário,
+    mas não dispara nenhuma ação de configuração, seja por eleição, seja por usuário único. Decidiu-se que
+    o espaço de tempo na simulação são 20 segundos, enquanto que o espaço de tempo no sistema real seja
+    20 minutos.
+
+    Lembrando que cada usuário tem seu perfil definido no sistema Web e carrega dados 
+    da relação usuário_climatização (qual a temperatura, em qual modo, em qual horário e em qual 
+    ambiente) e da relação usuário_iluminação (qual nível de ilumincação, em qual horário e em
+    qual ambiente).
+
+    No início da simulação, dispara-se o método init(). Nesse método são sorteados os usuários 
+    que entraram no ambiente, carregando suas preferências ou perfis para climatização e iluminação.
+
+    Durante a simulação, sempre que o método executeAction() for acionado, o sistema
+    sorteia a entrada de novos usuários e a possibilidade da saída de usuário que já esteja no ambiente.
+    Importante lembrar que o espaço de tempo mínimo seja mantido.
+
+
+    Na parte do ambiente do sistema de simulação (arquivo .java), um usuário é um objeto com atributos de perfil para:
+        - climatização (nome do usuario,
+        ambiente de perfil (sala, quarto, etc.), horário (manhã, tarde, noite), modo (verão ou inverno) e
+        temperatura (faixa entre 18 graus e 35 graus).
+        - iluminação (nome do usuário, ambiente (sala, quarto, etc),nível de iluminação, horário (manhã, tarde, noite))
+
+    Entretanto, na parte de agentes (arquivos .asl), ou seja, na programação do comportamento dos agentes iluminação e climatização,
+    o usuário também é um agente com crenças (equivalente aos atributos dos objetos) e desejos sobre os agentes de 
+    climatização e iluminação. Dessa forma, os agentes climatização e iluminação podem acessar essas crenças (na programação de agentes são
+    fatos) desses agentes usuários e iniciar o processo de configuração.
+
+    Na modelagem de comportamento do agente iluminação, toda vez que ele perceber (entrada ou saída) um agente usuário, dispara planos para
+    cada percepção realizada:
+
+    0) o agente iluminação só começa a configuração depois que o instante 
+    (um instante na simulação são 2 segundos, na situação real são 5 minutos) terminar
+    
+    1) para entrada de único agente usuário naquele instante:
+        
+    2) para entrada de mais de um agente usuário naquele instante
+
+    3) para saída de todos os usuários naquele instante
+
+    4) para saída de um usuário com usuários no ambiente
+        4.1) no intervalo sem alteração, o agente, apesar da saída de um usuário, não altera a sua configuração 
+
+    5) para entrada de um ou mais usuários com usuários no ambiente
+        5.1) no intervalo sem alteração, o agente, apesar da entrada e saída de usuários, não altera a sua configuração 
+
+
+
